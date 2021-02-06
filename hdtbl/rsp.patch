@@ -1,0 +1,41 @@
+29a30,33
+> .\"	*****************************************************************
+> .\"	*		Added rsp row space parameter   		*
+> .\"	*			Wim Stockman Februari 2021		*
+> .\"	*****************************************************************
+54a59
+> .nr t*rsp 0
+136a142,151
+> .  t*getarg rsp \\*[args]                 \"	-ws- vertical row spacing
+> .  ie "\\*[rsp]"" \
+> .    nr t*rsp\\n[t*#] \\n[t*rsp]
+> .  el \{\
+> .    ie \B\\*[rsp] \
+> .      nr t*rsp\\n[t*#] \\*[rsp]
+> .    el \
+> .      tm \\n[.F]:\\n[.c]: Invalid row spacing value '\\*[rsp]'.
+> .  \}
+> .
+561a577
+> .    if (\\n[#r] > 1) .nr topdiv +(\\n[t*rsp\\n[t*#]]) \" -ws- push the row down the amount of the vertical row space (rsp) parameter
+595c611
+< .          nr $1 +\\n[**]
+---
+> .          nr $1 +(\\n[**]+\\n[t*rsp\\n[t*#]]) \" -ws- adjust background height including the row spacing
+668a685
+> .              nr * (\\n[cscp] + \\n[cscpb] + \\n[cll\\*[#trc]])
+676a694
+> .\" Draw horizontal line if there is a rowspace specified
+682c700,709
+< .      \}\}\}\}
+---
+> .      \}\}
+> . \" -ws- Draw the row space border line  
+> .          if ((\\n[t*cols\\n[t*#]] - \\n[#c] + 1) & (\\n[t*rsp\\n[t*#]]) \{\
+> .nr * (\\n[cscp] + \\n[cscpb] + \\n[cll\\*[#trc]])
+> \D't \\n[*t]u'\
+> \v'(-\\n[cscpb2]u - .67v)'\
+> \h'(\\n[cscpb2]u - \\n[*t]u + \\n[cll\\*[#trc]]u)'\c
+> \m[\\*[t*bc\\n[t*#]]]\D'l -\\n[*]u 0'\m[]\v'(2u * \\n[cscp]u + \\n[$1]u + (\\n[*t]u / 2u))'
+> .              sp -1
+> \}\}\}

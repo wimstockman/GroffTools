@@ -1,0 +1,128 @@
+.so hdtbl.tmac-u
+.ll 19c
+.ps 10
+.vs 12
+.po 1c
+.sp 1c
+.ad r
+Datum: 2021-02-06
+.br
+.sp
+.ps 18
+.vs 18
+.ad c
+******************************************
+.br
+.ad c
+Extra functionality added for the 
+.br
+HDTBL Heidelberger table macros 
+.br
+******************************************
+.br
+.vs
+.ps
+.sp
+.nf
+.po 3c
+Added the option of Vertical Row Spacing
+In the .TBL macro
+The argument is : "\fBrsp=\fR"
+With the border argument it draws a line above the cell.
+Here under a few examples
+.fi
+.ll 8c
+.ad r 
+by Wim Stockman 
+.br
+.br
+.nf
+.ll 19c
+.po
+.nr t*s 12p
+.nr t*v 1v
+.nr cscpb 1c
+.TBL bgc=black fgc=red border=2 bc=green rsp=(.5c) csp=(0.10c) cols=7 width='3c 3.5c 1.7c 2c 3.5c 1.7c 1.7c' hal=r val=b
+.CPTN TESTER val=b
+.TR 
+.TH Head1
+.TH Head2
+.TH Head3
+.TH Head4
+.TH Head5
+.TH Head6
+.TH Head7
+.TR
+.TD 1*1
+.TD 1*2
+.TD 1*3
+.TD 1*4
+.TD 1*5
+.TD 1*6
+.TD 1*7
+.TR 
+.TD 2*1
+.TD 2*2
+.TD 2*3
+.TD 2*4
+.TD 2*5
+.TD 2*6
+.TD 2*7
+.TR 
+.TD 3*1
+.TD 3*2
+.TD 3*3
+.TD 3*4
+.TD 3*5
+.TD 3*6
+.TD 3*7
+.TR 
+.TD 4*1
+.TD 4*2
+.TD 4*3
+.TD 4*4
+.TD 4*5
+.TD 4*6
+.TD 4*7
+.ETB
+.TBL cols=3 rsp=0.5c
+.  TR
+.  TD 1*1
+.  TD rowspan=2 1+2*2
+.  TD 1*3
+.
+.  TR
+.  TD 2*1
+.  TD 2*3
+.ETB
+.br
+.nf
+.TBL bgc=black fgc=red border=2 bc=green rsp=(0.2c) csp=(0.30c) cpd=(0.2c) cols=3 
+.  TR
+.  TD 1*1
+.  TD 1+2*2
+.  TD 1*3
+.  TR
+.  TD 2*1
+.  TD 1+2*2
+.  TD 2*3
+.  TR
+.  TD 1*1
+.  TD 1+2*2
+.  TD 1*3
+.  TR
+.  TD 2*1
+.  TD 1+2*2
+.  TD 2*3
+.ETB
+table with no borders
+.TBL cols=2 border=
+.  TR
+.    TD colspan=2
+.      nop 1*1 1*2
+.  TR
+.    TD
+.      nop 2*1
+.    TD
+.      nop 2*2
+.ETB
